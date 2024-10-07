@@ -55,6 +55,9 @@ app.get('/:shortUrl', async (req, res, next) => {
 });
 
 // listen
-app.listen(process.env.PORT || 3000, () => {
-    console.log('Server started on port ' + (process.env.PORT || 3000));
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+    console.log('Server started on port ' + port);
 });
+
+module.exports = app;

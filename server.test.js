@@ -1,10 +1,27 @@
 const request = require('supertest');
-const express = require('express');
 const mongoose = require('mongoose');
 const ShortUrl = require('./models/shortUrl');
-const app = require('./server'); // Assuming you export the app from server.js
+const app = require('./server');
 
 jest.mock('./models/shortUrl');
+
+//Mocking the mongoose connection
+jest.mock('mongoose', () => ({
+    connect: jest.fn(),
+    Schema: jest.fn(() => ({
+        full: String,
+        short: String
+    })),
+    model: jest.fn(() => ({
+        find: jest.fn(),
+        create: jest.fn()
+    })),
+    connection: {
+        on: jest.fn(),
+        once: jest.fn(),
+        close: jest.fn(),
+    },
+}));
 
 describe('GET /', () => {
     it('should render the index page with a list of short URLs', async () => {
