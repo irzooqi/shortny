@@ -1,2 +1,3 @@
 # shortny
-website with funny objects for shortening urls
+V0: Test a url shortening service website
+V1: Adding funny objects for shortening urls
